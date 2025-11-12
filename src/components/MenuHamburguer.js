@@ -28,6 +28,10 @@ export default function MenuHamburguer({ visible, onClose }) {
             <Text style={styles.menuText}>💬 Saúde Mental</Text>
           </TouchableOpacity>
 
+          <TouchableOpacity onPress={() => navegar('Questionario')} style={styles.menuItem}>
+            <Text style={styles.menuText}>📝 Questionário</Text>
+          </TouchableOpacity>
+
           <TouchableOpacity onPress={() => navegar('Logout')} style={styles.menuItem}>
             <Text style={styles.menuText}>🔴 Logout</Text>
           </TouchableOpacity>
