@@ -7,6 +7,7 @@ import TelaDevs from './screens/TelaDevs';
 import TelaLogin from './screens/TelaLogin';
 import TelaSobreAju from './screens/TelaSobreAju';
 import TelaQuestio from './screens/TelaQuestio';
+import TelaConfig from './screens/TelaConfig';
 
 const Stack = createNativeStackNavigator();
 
@@ -19,6 +20,7 @@ export default function App() {
         <Stack.Screen name="Logout" component={TelaLogin} />
         <Stack.Screen name="SobreAju" component={TelaSobreAju} />
         <Stack.Screen name="Questionario" component={TelaQuestio} />
+        <Stack.Screen name="Config" component={TelaConfig} />
       </Stack.Navigator>
     </NavigationContainer>
   );

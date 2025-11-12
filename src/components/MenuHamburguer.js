@@ -1,9 +1,11 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, Modal, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { useTranslation } from 'react-i18next';
 
 export default function MenuHamburguer({ visible, onClose }) {
   const navigation = useNavigation();
+  const { t } = useTranslation(); // hook do i18n
 
   const navegar = (tela) => {
     onClose();
@@ -14,30 +16,34 @@ export default function MenuHamburguer({ visible, onClose }) {
     <Modal animationType="slide" transparent={true} visible={visible} onRequestClose={onClose}>
       <View style={styles.overlay}>
         <View style={styles.menu}>
-          <Text style={styles.menuTitle}>Menu</Text>
+          <Text style={styles.menuTitle}>{t('Menu')}</Text>
 
           <TouchableOpacity onPress={() => navegar('Home')} style={styles.menuItem}>
-            <Text style={styles.menuText}>🏠 Home</Text>
+            <Text style={styles.menuText}>🏠 {t('Home')}</Text>
           </TouchableOpacity>
 
           <TouchableOpacity onPress={() => navegar('Devs')} style={styles.menuItem}>
-            <Text style={styles.menuText}>👨‍💻 Desenvolvedores</Text>
+            <Text style={styles.menuText}>👨‍💻 {t('Desenvolvedores')}</Text>
           </TouchableOpacity>
 
           <TouchableOpacity onPress={() => navegar('SobreAju')} style={styles.menuItem}>
-            <Text style={styles.menuText}>💬 Saúde Mental</Text>
+            <Text style={styles.menuText}>💬 {t('SaudeMental')}</Text>
           </TouchableOpacity>
 
           <TouchableOpacity onPress={() => navegar('Questionario')} style={styles.menuItem}>
-            <Text style={styles.menuText}>📝 Questionário</Text>
+            <Text style={styles.menuText}>📝 {t('Questionario')}</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity onPress={() => navegar('Config')} style={styles.menuItem}>
+            <Text style={styles.menuText}>⚙️ {t('Configuracao')}</Text>
           </TouchableOpacity>
 
           <TouchableOpacity onPress={() => navegar('Logout')} style={styles.menuItem}>
-            <Text style={styles.menuText}>🔴 Logout</Text>
+            <Text style={styles.menuText}>🔴 {t('Logout')}</Text>
           </TouchableOpacity>
 
           <TouchableOpacity onPress={onClose} style={styles.menuItem}>
-            <Text style={[styles.menuText, { color: 'red' }]}>❌ Fechar</Text>
+            <Text style={[styles.menuText, { color: 'red' }]}>❌ {t('Fechar')}</Text>
           </TouchableOpacity>
         </View>
       </View>

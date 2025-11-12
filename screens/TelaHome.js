@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
 import MenuHamburguer from '../src/components/MenuHamburguer';
+import { useTranslation } from 'react-i18next';
 
 export default function TelaHome() {
   const [menuVisible, setMenuVisible] = useState(false);
+  const { t } = useTranslation(); // Hook do i18n
 
   return (
     <View style={styles.container}>
+      {/* Botão do menu */}
       <TouchableOpacity
         style={styles.menuButton}
         onPress={() => setMenuVisible(true)}
@@ -14,35 +17,26 @@ export default function TelaHome() {
         <Text style={styles.menuIcon}>☰</Text>
       </TouchableOpacity>
 
+      {/* Conteúdo principal */}
       <ScrollView contentContainerStyle={styles.scrollContent}>
-        <Text style={styles.title}>🌿 Bem-vindo!</Text>
+        <Text style={styles.title}>{t('Bem-vindo!')}</Text>
 
-        <Text style={styles.subtitle}>
-          Nosso aplicativo foi criado para promover a conscientização sobre o bem-estar e a saúde mental no ambiente de trabalho.
-        </Text>
+        <Text style={styles.subtitle}>{t('descricaoApp')}</Text>
 
-        <Text style={styles.paragraph}>
-          A saúde mental é um pilar essencial para o bom desempenho profissional. Em um mundo cada vez mais acelerado, com prazos curtos e alta cobrança, é comum que trabalhadores enfrentem estresse, ansiedade e até esgotamento emocional (burnout).
-        </Text>
+        <Text style={styles.paragraph}>{t('importanciaSaudeMental')}</Text>
 
-        <Text style={styles.paragraph}>
-          Cuidar da mente é tão importante quanto cuidar do corpo. Empresas que investem em programas de apoio psicológico, pausas saudáveis e ambientes colaborativos têm equipes mais produtivas, criativas e felizes.
-        </Text>
+        <Text style={styles.paragraph}>{t('cuidarDaMente')}</Text>
 
-        <Text style={styles.paragraph}>
-          💡 Dica: Reserve um tempo para respirar, desconectar-se de vez em quando e compartilhar seus desafios com colegas de confiança.
-        </Text>
+        <Text style={styles.paragraph}>{t('dicaSaude')}</Text>
 
+        {/* Rodapé */}
         <View style={styles.footer}>
-          <Text style={styles.footerText}>
-            👉 Para saber mais sobre o nosso app, acesse a tela <Text style={styles.highlight}>“Sobre o app”</Text>.
-          </Text>
-          <Text style={styles.footerText}>
-            🧠 E para participar do nosso <Text style={styles.highlight}>questionário</Text>, acesse a aba correspondente.
-          </Text>
+          <Text style={styles.footerText}>{t('footerSobre')}</Text>
+          <Text style={styles.footerText}>{t('footerQuestionario')}</Text>
         </View>
       </ScrollView>
 
+      {/* Menu lateral */}
       <MenuHamburguer visible={menuVisible} onClose={() => setMenuVisible(false)} />
     </View>
   );
@@ -104,9 +98,5 @@ const styles = StyleSheet.create({
     color: '#0d47a1',
     textAlign: 'center',
     marginBottom: 5,
-  },
-  highlight: {
-    fontWeight: 'bold',
-    color: '#1976d2',
   },
 });

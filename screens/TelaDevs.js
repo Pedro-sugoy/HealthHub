@@ -1,16 +1,21 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image, ScrollView } from 'react-native';
+import { useTranslation } from 'react-i18next';
 
 export default function TelaDevs() {
+  const { t } = useTranslation(); // Hook do i18n
+
   return (
     <ScrollView contentContainerStyle={styles.container}>
+      <Text style={styles.title}>{t('DESENVOLVEDORES')}</Text>
+
       <View style={styles.card}>
         <Image
           source={require('../assets/pedro.jpg')}
           style={styles.image}
         />
-        <Text style={styles.name}>Pedro Manzo Yokoo</Text>
-        <Text style={styles.rm}>RM: 556115</Text>
+        <Text style={styles.name}>{t('PedroManzo')}</Text>
+        <Text style={styles.rm}>{t('RM_Pedro')}</Text>
       </View>
 
       <View style={styles.card}>
@@ -18,8 +23,8 @@ export default function TelaDevs() {
           source={require('../assets/fernando.jpg')}
           style={styles.image}
         />
-        <Text style={styles.name}>Fernando Fernandes Prado</Text>
-        <Text style={styles.rm}>RM: 557982</Text>
+        <Text style={styles.name}>{t('FernandoPrado')}</Text>
+        <Text style={styles.rm}>{t('RM_Fernando')}</Text>
       </View>
 
       <View style={styles.card}>
@@ -27,8 +32,8 @@ export default function TelaDevs() {
           source={require('../assets/guilherme.jpg')}
           style={styles.image}
         />
-        <Text style={styles.name}>Guilherme Camamie Laiber de Jesus</Text>
-        <Text style={styles.rm}>RM: 554894</Text>
+        <Text style={styles.name}>{t('GuilhermeLaiber')}</Text>
+        <Text style={styles.rm}>{t('RM_Guilherme')}</Text>
       </View>
     </ScrollView>
   );
@@ -41,7 +46,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     paddingVertical: 40,
-    gap: 30, 
+    gap: 30,
+  },
+  title: {
+    fontSize: 26,
+    color: '#fff',
+    fontWeight: 'bold',
+    marginBottom: 10,
+    textAlign: 'center',
   },
   card: {
     backgroundColor: '#fff',

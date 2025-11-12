@@ -1,27 +1,28 @@
 import React from 'react';
 import { View, Text, StyleSheet, ScrollView, Image } from 'react-native';
+import { useTranslation } from 'react-i18next'; // Import i18n
 
 export default function TelaSobreAju() {
+  const { t } = useTranslation();
+
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      <Text style={styles.title}>🧠 Sobre a Saúde no Ambiente de Trabalho</Text>
+      <Text style={styles.title}>{t('sobreSaudeTitulo')}</Text>
 
       <Text style={styles.paragraph}>
-        De acordo com o portal oficial do governo (<Text style={styles.link}>gov.br</Text>), o equilíbrio entre trabalho e vida pessoal é essencial para a saúde mental. 
-        A enfermeira Juliana Lemos Rabelo, do Hospital das Clínicas da UFMG, destaca:
+        {t('sobreSaudeTexto1')} <Text style={styles.link}>gov.br</Text>, {t('sobreSaudeTexto2')}
       </Text>
 
       <Text style={styles.quote}>
-        “O equilíbrio entre trabalho e vida pessoal é um conceito que se refere à capacidade de conciliar as demandas profissionais com as atividades pessoais e de lazer. 
-        É um aspecto fundamental da saúde mental, por contribuir para o bem-estar físico, emocional e social.”
+        {t('sobreSaudeCitacao')}
       </Text>
 
       <Text style={styles.paragraph}>
-        Já segundo o portal <Text style={styles.link}>G1</Text>, o Brasil vive uma crise de saúde mental com impacto direto na vida dos trabalhadores e nas empresas.
+        {t('sobreSaudeTexto3')} <Text style={styles.link}>G1</Text>, {t('sobreSaudeTexto4')}
       </Text>
 
       <Text style={styles.highlight}>
-        💬 Em 2024, foram quase meio milhão de afastamentos por motivos psicológicos — o maior número em pelo menos dez anos.
+        {t('sobreSaudeDado2024')}
       </Text>
 
       <Image
@@ -31,7 +32,7 @@ export default function TelaSobreAju() {
       />
 
       <Text style={styles.footer}>
-        Cuidar da saúde mental é investir em qualidade de vida, produtividade e relações de trabalho mais humanas. 🌿
+        {t('sobreSaudeConclusao')}
       </Text>
     </ScrollView>
   );
