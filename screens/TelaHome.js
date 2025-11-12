@@ -2,41 +2,39 @@ import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
 import MenuHamburguer from '../src/components/MenuHamburguer';
 import { useTranslation } from 'react-i18next';
+import { useTheme } from '../src/context/ThemeContext'; 
 
 export default function TelaHome() {
   const [menuVisible, setMenuVisible] = useState(false);
-  const { t } = useTranslation(); // Hook do i18n
+  const { t } = useTranslation();
+  const { colors } = useTheme(); 
 
   return (
-    <View style={styles.container}>
-      {/* Botão do menu */}
+    <View style={[styles.container, { backgroundColor: colors.background }]}>
       <TouchableOpacity
         style={styles.menuButton}
         onPress={() => setMenuVisible(true)}
       >
-        <Text style={styles.menuIcon}>☰</Text>
+        <Text style={[styles.menuIcon, { color: colors.text }]}>☰</Text>
       </TouchableOpacity>
 
-      {/* Conteúdo principal */}
       <ScrollView contentContainerStyle={styles.scrollContent}>
-        <Text style={styles.title}>{t('Bem-vindo!')}</Text>
+        <Text style={[styles.title, { color: colors.text }]}>{t('Bem-vindo!')}</Text>
 
-        <Text style={styles.subtitle}>{t('descricaoApp')}</Text>
+        <Text style={[styles.subtitle, { color: colors.text }]}>{t('descricaoApp')}</Text>
 
-        <Text style={styles.paragraph}>{t('importanciaSaudeMental')}</Text>
+        <Text style={[styles.paragraph, { color: colors.text }]}>{t('importanciaSaudeMental')}</Text>
 
-        <Text style={styles.paragraph}>{t('cuidarDaMente')}</Text>
+        <Text style={[styles.paragraph, { color: colors.text }]}>{t('cuidarDaMente')}</Text>
 
-        <Text style={styles.paragraph}>{t('dicaSaude')}</Text>
+        <Text style={[styles.paragraph, { color: colors.text }]}>{t('dicaSaude')}</Text>
 
-        {/* Rodapé */}
-        <View style={styles.footer}>
-          <Text style={styles.footerText}>{t('footerSobre')}</Text>
-          <Text style={styles.footerText}>{t('footerQuestionario')}</Text>
+        <View style={[styles.footer, { backgroundColor: colors.inputBackground, borderColor: colors.inputBorder, borderWidth: 1 }]}>
+          <Text style={[styles.footerText, { color: colors.text }]}>{t('footerSobre')}</Text>
+          <Text style={[styles.footerText, { color: colors.text }]}>{t('footerQuestionario')}</Text>
         </View>
       </ScrollView>
 
-      {/* Menu lateral */}
       <MenuHamburguer visible={menuVisible} onClose={() => setMenuVisible(false)} />
     </View>
   );
@@ -45,7 +43,6 @@ export default function TelaHome() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#E8F0FE',
     paddingTop: 60,
   },
   scrollContent: {
@@ -63,39 +60,33 @@ const styles = StyleSheet.create({
   },
   menuIcon: {
     fontSize: 28,
-    color: '#1976d2',
   },
   title: {
     fontSize: 28,
     fontWeight: 'bold',
-    color: '#1565c0',
     marginBottom: 15,
     textAlign: 'center',
   },
   subtitle: {
     fontSize: 18,
-    color: '#333',
     marginBottom: 25,
     textAlign: 'center',
     lineHeight: 24,
   },
   paragraph: {
     fontSize: 16,
-    color: '#444',
     textAlign: 'justify',
     lineHeight: 24,
     marginBottom: 20,
   },
   footer: {
     marginTop: 20,
-    backgroundColor: '#BBDEFB',
     padding: 15,
     borderRadius: 12,
     width: '100%',
   },
   footerText: {
     fontSize: 15,
-    color: '#0d47a1',
     textAlign: 'center',
     marginBottom: 5,
   },

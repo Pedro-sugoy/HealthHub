@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
 import { useTranslation } from 'react-i18next';
+import { useTheme } from '../src/context/ThemeContext';
 
 export default function TelaQuestio() {
   const { t } = useTranslation();
+  const { colors, theme } = useTheme();
 
   const [respostas, setRespostas] = useState({
     estresse: 0,
@@ -31,7 +33,6 @@ export default function TelaQuestio() {
     const motivacao = respostas.motivacao;
 
     let recomendacao = '';
-
     if (mediaEstresse <= 2 && sono >= 4 && motivacao >= 4) {
       recomendacao = t('resultadoExcelente');
     } else if (mediaEstresse <= 3.5 && sono >= 3 && motivacao >= 3) {
@@ -40,7 +41,6 @@ export default function TelaQuestio() {
       recomendacao = t('resultadoRuim');
     }
 
-    // Recomendações específicas
     let detalhe = '';
     if (respostas.estresse >= 4) detalhe += `\n${t('dicaEstresse')}`;
     if (respostas.sono <= 2) detalhe += `\n${t('dicaSono')}`;
@@ -60,27 +60,27 @@ export default function TelaQuestio() {
   ];
 
   return (
-    <ScrollView contentContainerStyle={styles.container}>
-      <Text style={styles.titulo}>{t('tituloQuestionario')}</Text>
-      <Text style={styles.subtitulo}>{t('instrucaoQuestionario')}</Text>
+    <ScrollView contentContainerStyle={[styles.container, { backgroundColor: colors.background }]}>
+      <Text style={[styles.titulo, { color: colors.text }]}>{t('tituloQuestionario')}</Text>
+      <Text style={[styles.subtitulo, { color: colors.text }]}>{t('instrucaoQuestionario')}</Text>
 
       {perguntas.map((p) => (
         <View key={p.campo} style={styles.perguntaContainer}>
-          <Text style={styles.pergunta}>{p.texto}</Text>
+          <Text style={[styles.pergunta, { color: colors.text }]}>{p.texto}</Text>
           <View style={styles.opcoes}>
             {[1, 2, 3, 4, 5].map((n) => (
               <TouchableOpacity
                 key={n}
                 style={[
                   styles.botaoOpcao,
-                  respostas[p.campo] === n && styles.botaoSelecionado,
+                  { backgroundColor: respostas[p.campo] === n ? colors.button : colors.inputBackground },
                 ]}
                 onPress={() => handleResposta(p.campo, n)}
               >
                 <Text
                   style={[
                     styles.textoOpcao,
-                    respostas[p.campo] === n && styles.textoSelecionado,
+                    { color: respostas[p.campo] === n ? colors.buttonText : colors.text },
                   ]}
                 >
                   {n}
@@ -91,13 +91,16 @@ export default function TelaQuestio() {
         </View>
       ))}
 
-      <TouchableOpacity style={styles.botaoEnviar} onPress={calcularRecomendacao}>
-        <Text style={styles.textoEnviar}>{t('botaoEnviar')}</Text>
+      <TouchableOpacity
+        style={[styles.botaoEnviar, { backgroundColor: colors.button }]}
+        onPress={calcularRecomendacao}
+      >
+        <Text style={[styles.textoEnviar, { color: colors.buttonText }]}>{t('botaoEnviar')}</Text>
       </TouchableOpacity>
 
       {resultado !== '' && (
-        <View style={styles.resultadoBox}>
-          <Text style={styles.resultadoTexto}>{resultado}</Text>
+        <View style={[styles.resultadoBox, { backgroundColor: colors.inputBackground }]}>
+          <Text style={[styles.resultadoTexto, { color: colors.text }]}>{resultado}</Text>
         </View>
       )}
     </ScrollView>
@@ -107,20 +110,17 @@ export default function TelaQuestio() {
 const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
-    backgroundColor: '#E3F2FD',
     padding: 25,
     alignItems: 'center',
   },
   titulo: {
     fontSize: 26,
     fontWeight: 'bold',
-    color: '#1565c0',
     marginBottom: 10,
     textAlign: 'center',
   },
   subtitulo: {
     fontSize: 16,
-    color: '#333',
     marginBottom: 25,
     textAlign: 'center',
   },
@@ -130,7 +130,6 @@ const styles = StyleSheet.create({
   },
   pergunta: {
     fontSize: 18,
-    color: '#0d47a1',
     marginBottom: 10,
   },
   opcoes: {
@@ -141,42 +140,30 @@ const styles = StyleSheet.create({
     width: 45,
     height: 45,
     borderRadius: 25,
-    backgroundColor: '#bbdefb',
     justifyContent: 'center',
     alignItems: 'center',
   },
-  botaoSelecionado: {
-    backgroundColor: '#1976d2',
-  },
   textoOpcao: {
     fontSize: 18,
-    color: '#0d47a1',
     fontWeight: 'bold',
-  },
-  textoSelecionado: {
-    color: '#fff',
   },
   botaoEnviar: {
     marginTop: 25,
-    backgroundColor: '#1565c0',
     paddingVertical: 12,
     paddingHorizontal: 40,
     borderRadius: 10,
   },
   textoEnviar: {
-    color: '#fff',
     fontSize: 18,
     fontWeight: 'bold',
   },
   resultadoBox: {
     marginTop: 30,
-    backgroundColor: '#BBDEFB',
     padding: 15,
     borderRadius: 10,
   },
   resultadoTexto: {
     fontSize: 16,
-    color: '#0d47a1',
     textAlign: 'center',
     fontWeight: '500',
   },

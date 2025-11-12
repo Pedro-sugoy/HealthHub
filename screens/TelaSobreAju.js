@@ -1,29 +1,29 @@
 import React from 'react';
 import { View, Text, StyleSheet, ScrollView, Image } from 'react-native';
-import { useTranslation } from 'react-i18next'; // Import i18n
+import { useTranslation } from 'react-i18next';
+import { useTheme } from '../src/context/ThemeContext';
 
 export default function TelaSobreAju() {
   const { t } = useTranslation();
+  const { colors } = useTheme();
 
   return (
-    <ScrollView contentContainerStyle={styles.container}>
-      <Text style={styles.title}>{t('sobreSaudeTitulo')}</Text>
+    <ScrollView contentContainerStyle={[styles.container, { backgroundColor: colors.background }]}>
+      <Text style={[styles.title, { color: colors.text }]}>{t('sobreSaudeTitulo')}</Text>
 
-      <Text style={styles.paragraph}>
-        {t('sobreSaudeTexto1')} <Text style={styles.link}>gov.br</Text>, {t('sobreSaudeTexto2')}
+      <Text style={[styles.paragraph, { color: colors.text }]}>
+        {t('sobreSaudeTexto1')} <Text style={[styles.link, { color: colors.button }]}>{'gov.br'}</Text>, {t('sobreSaudeTexto2')}
       </Text>
 
-      <Text style={styles.quote}>
+      <Text style={[styles.quote, { backgroundColor: colors.inputBackground, color: colors.text }]}>
         {t('sobreSaudeCitacao')}
       </Text>
 
-      <Text style={styles.paragraph}>
-        {t('sobreSaudeTexto3')} <Text style={styles.link}>G1</Text>, {t('sobreSaudeTexto4')}
+      <Text style={[styles.paragraph, { color: colors.text }]}>
+        {t('sobreSaudeTexto3')} <Text style={[styles.link, { color: colors.button }]}>{'G1'}</Text>, {t('sobreSaudeTexto4')}
       </Text>
 
-      <Text style={styles.highlight}>
-        {t('sobreSaudeDado2024')}
-      </Text>
+      <Text style={[styles.highlight, { color: colors.button }]}>{t('sobreSaudeDado2024')}</Text>
 
       <Image
         source={require('../assets/graficosG1.avif')}
@@ -31,9 +31,7 @@ export default function TelaSobreAju() {
         resizeMode="contain"
       />
 
-      <Text style={styles.footer}>
-        {t('sobreSaudeConclusao')}
-      </Text>
+      <Text style={[styles.footer, { color: colors.text }]}>{t('sobreSaudeConclusao')}</Text>
     </ScrollView>
   );
 }
@@ -41,20 +39,17 @@ export default function TelaSobreAju() {
 const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
-    backgroundColor: '#E8F0FE',
     padding: 20,
     alignItems: 'center',
   },
   title: {
     fontSize: 24,
     fontWeight: 'bold',
-    color: '#0D47A1',
     textAlign: 'center',
     marginBottom: 20,
   },
   paragraph: {
     fontSize: 16,
-    color: '#333',
     textAlign: 'justify',
     marginBottom: 15,
     lineHeight: 24,
@@ -62,17 +57,15 @@ const styles = StyleSheet.create({
   quote: {
     fontSize: 16,
     fontStyle: 'italic',
-    color: '#1565C0',
-    backgroundColor: '#BBDEFB',
     padding: 12,
     borderRadius: 10,
     lineHeight: 24,
     marginBottom: 15,
+    textAlign: 'justify',
   },
   highlight: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#C62828',
     textAlign: 'center',
     marginBottom: 20,
     lineHeight: 22,
@@ -84,12 +77,10 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   link: {
-    color: '#1976D2',
     fontWeight: 'bold',
   },
   footer: {
     fontSize: 16,
-    color: '#0D47A1',
     textAlign: 'center',
     marginTop: 10,
     lineHeight: 22,

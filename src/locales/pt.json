@@ -49,5 +49,8 @@
   "Questionario": "Questionário",
   "Configuracao": "Configuração",
   "Logout": "Sair",
-  "Fechar": "Fechar"
+  "Fechar": "Fechar",
+
+  "Idioma atual": "Idioma atual", 
+  "Tema atual": "Tema atual"
 }
