@@ -7,7 +7,7 @@ import ThemeToggleButton from '../src/components/ThemeToggleButton';
 
 export default function TelaConfig() {
   const { t } = useTranslation();
-  const { colors, theme } = useTheme(); // pega cores e tema atual
+  const { colors, theme } = useTheme();  
   const [idioma, setIdioma] = useState(i18n.language || 'pt');
 
   const alternarIdioma = () => {
