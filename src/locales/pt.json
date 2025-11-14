@@ -51,6 +51,60 @@
   "Logout": "Sair",
   "Fechar": "Fechar",
 
-  "Idioma atual": "Idioma atual", 
-  "Tema atual": "Tema atual"
+  "Idioma atual": "Idioma atual",
+  "Tema atual": "Tema atual",
+
+  "Email corporativo": "Email corporativo",
+  "Nome completo": "Nome completo",
+  "Senha": "Senha",
+  "Tipo de usuário": "Tipo de usuário",
+  "Administrador": "Administrador",
+  "Usuário comum": "Usuário comum",
+  "Cadastrar": "Cadastrar",
+
+  "⚠️ Atenção": "⚠️ Atenção",
+  "Preencha todos os campos.": "Preencha todos os campos.",
+  "✅ Sucesso": "✅ Sucesso",
+  "Usuário cadastrado com sucesso!": "Usuário cadastrado com sucesso!",
+  "❌ Erro no cadastro": "❌ Erro no cadastro",
+  "⚠️ Erro de conexão": "⚠️ Erro de conexão",
+
+  "Login": "Login",
+  "Digite seu e-mail": "Digite seu e-mail",
+  "Digite sua senha": "Digite sua senha",
+  "Entrar": "Entrar",
+  "Não tem conta? Criar conta": "Não tem conta? Criar conta",
+
+  "Erro": "Erro",
+  "Usuário não encontrado": "Usuário não encontrado",
+  "Falha ao buscar usuário": "Falha ao buscar usuário",
+  "Falha na conexão com o servidor": "Falha na conexão com o servidor",
+  "Sucesso": "Sucesso",
+  "Bem-vindo": "Bem-vindo",
+
+  "Configurações": "Configurações",
+  "Nome": "Nome",
+  "E-mail corporativo": "E-mail corporativo",
+  "Senha (deixe em branco para não alterar)": "Senha (deixe em branco para não alterar)",
+  "Atualizar": "Atualizar",
+  "Deletar usuário": "Deletar usuário",
+
+  "Nome e e-mail são obrigatórios.": "Nome e e-mail são obrigatórios.",
+  "Usuário atualizado com sucesso!": "Usuário atualizado com sucesso!",
+  "Falha ao atualizar usuário.": "Falha ao atualizar usuário.",
+  "Falha de conexão.": "Falha de conexão.",
+  "Usuário deletado!": "Usuário deletado!",
+  "Usuário não encontrado.": "Usuário não encontrado.",
+  "Falha ao deletar usuário.": "Falha ao deletar usuário.",
+
+  "Confirmar": "Confirmar",
+  "Cancelar": "Cancelar",
+  "Deletar": "Deletar",
+  "Deseja realmente deletar este usuário?": "Deseja realmente deletar este usuário?",
+
+  "Switch to English": "Mudar para inglês",
+  "Mudar para Português": "Mudar para Português",
+
+  "Tema claro": "Tema claro",
+  "Tema escuro": "Tema escuro"
 }

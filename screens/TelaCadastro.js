@@ -1,16 +1,19 @@
 import React, { useState } from 'react';
 import { View, TextInput, Button, StyleSheet, Alert, Text } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
+import { useTranslation } from 'react-i18next';
 
 export default function TelaCadastro() {
+  const { t } = useTranslation();
+
   const [emailCorporativo, setEmailCorporativo] = useState('');
   const [nome, setNome] = useState('');
   const [senha, setSenha] = useState('');
-  const [tipoUsuario, setTipoUsuario] = useState('ADMIN'); // valor padrão
+  const [tipoUsuario, setTipoUsuario] = useState('ADMIN');
 
   const handleCadastrar = async () => {
     if (!emailCorporativo || !nome || !senha) {
-      Alert.alert('⚠️ Atenção', 'Preencha todos os campos.');
+      Alert.alert(t("⚠️ Atenção"), t("Preencha todos os campos."));
       return;
     }
 
@@ -25,14 +28,14 @@ export default function TelaCadastro() {
           emailCorporativo: emailCorporativo.trim(),
           nome: nome.trim(),
           senha: senha.trim(),
-          tipoUsuario: tipoUsuario.trim(), // <-- CORRETO PARA A API
+          tipoUsuario: tipoUsuario.trim(), 
         }),
       });
 
       const data = await response.json().catch(() => null);
 
       if (response.status === 201) {
-        Alert.alert('✅ Sucesso', 'Usuário cadastrado com sucesso!');
+        Alert.alert(t("✅ Sucesso"), t("Usuário cadastrado com sucesso!"));
         setEmailCorporativo('');
         setNome('');
         setSenha('');
@@ -42,12 +45,11 @@ export default function TelaCadastro() {
           data?.detail ||
           data?.title ||
           JSON.stringify(data) ||
-          'Erro desconhecido';
-
-        Alert.alert('❌ Erro no cadastro', msgErro);
+          'Erro';
+        Alert.alert(t("❌ Erro no cadastro"), msgErro);
       }
     } catch (error) {
-      Alert.alert('⚠️ Erro de conexão', error.message);
+      Alert.alert(t("⚠️ Erro de conexão"), error.message);
     }
   };
 
@@ -55,7 +57,7 @@ export default function TelaCadastro() {
     <View style={styles.container}>
       <TextInput
         style={styles.input}
-        placeholder="Email corporativo"
+        placeholder={t("Email corporativo")}
         keyboardType="email-address"
         autoCapitalize="none"
         value={emailCorporativo}
@@ -64,32 +66,32 @@ export default function TelaCadastro() {
 
       <TextInput
         style={styles.input}
-        placeholder="Nome completo"
+        placeholder={t("Nome completo")}
         value={nome}
         onChangeText={setNome}
       />
 
       <TextInput
         style={styles.input}
-        placeholder="Senha"
+        placeholder={t("Senha")}
         secureTextEntry
         value={senha}
         onChangeText={setSenha}
       />
 
-      <Text style={styles.label}>Tipo de usuário:</Text>
+      <Text style={styles.label}>{t("Tipo de usuário")}:</Text>
       <View style={styles.pickerContainer}>
         <Picker
           selectedValue={tipoUsuario}
-          onValueChange={(valor) => setTipoUsuario(valor)}
+          onValueChange={setTipoUsuario}
           style={styles.picker}
         >
-          <Picker.Item label="Administrador" value="ADMIN" />
-          <Picker.Item label="Usuário comum" value="USER" />
+          <Picker.Item label={t("Administrador")} value="ADMIN" />
+          <Picker.Item label={t("Usuário comum")} value="USER" />
         </Picker>
       </View>
 
-      <Button title="Cadastrar" onPress={handleCadastrar} />
+      <Button title={t("Cadastrar")} onPress={handleCadastrar} />
     </View>
   );
 }

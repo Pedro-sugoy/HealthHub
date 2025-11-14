@@ -1,13 +1,17 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useTranslation } from 'react-i18next';
 
 export default function TelaLogin({ navigation }) {
+  const { t } = useTranslation();
+
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
 
   const handleLogin = async () => {
     if (!email || !senha) {
-      Alert.alert("Erro", "Preencha todos os campos");
+      Alert.alert(t("Erro"), t("Preencha todos os campos"));
       return;
     }
 
@@ -17,34 +21,38 @@ export default function TelaLogin({ navigation }) {
       );
 
       if (response.status === 404) {
-        Alert.alert("Erro", "Usuário não encontrado");
+        Alert.alert(t("Erro"), t("Usuário não encontrado"));
         return;
       }
 
       if (!response.ok) {
-        Alert.alert("Erro", "Falha ao buscar usuário");
+        Alert.alert(t("Erro"), t("Falha ao buscar usuário"));
         return;
       }
 
       const user = await response.json();
 
-      Alert.alert("Sucesso", `Bem-vindo, ${user.nome}!`);
+      Alert.alert(t("Sucesso"), `${t("Bem-vindo")}, ${user.nome}!`);
 
-      navigation.navigate("Home", { user });
+      await AsyncStorage.setItem("emailLogado", email);
+      await AsyncStorage.setItem("usuarioLogado", JSON.stringify(user));
+
+      navigation.replace("Home", { user });
 
     } catch (error) {
-      Alert.alert("Erro", "Falha na conexão com o servidor");
+      Alert.alert(t("Erro"), t("Falha na conexão com o servidor"));
       console.log(error);
     }
   };
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Login</Text>
+      <Text style={styles.title}>{t("Login")}</Text>
 
       <TextInput
         style={styles.input}
-        placeholder="Digite seu e-mail"
+        placeholder={t("Digite seu e-mail")}
+        placeholderTextColor="#777"
         value={email}
         onChangeText={setEmail}
         autoCapitalize="none"
@@ -52,18 +60,19 @@ export default function TelaLogin({ navigation }) {
 
       <TextInput
         style={styles.input}
-        placeholder="Digite sua senha"
+        placeholder={t("Digite sua senha")}
+        placeholderTextColor="#777"
         secureTextEntry
         value={senha}
         onChangeText={setSenha}
       />
 
       <TouchableOpacity style={styles.button} onPress={handleLogin}>
-        <Text style={styles.buttonText}>Entrar</Text>
+        <Text style={styles.buttonText}>{t("Entrar")}</Text>
       </TouchableOpacity>
 
       <TouchableOpacity onPress={() => navigation.navigate("Cadastro")}>
-        <Text style={styles.linkText}>Não tem conta? Criar conta</Text>
+        <Text style={styles.linkText}>{t("Não tem conta? Criar conta")}</Text>
       </TouchableOpacity>
     </View>
   );
