@@ -40,6 +40,10 @@ export default function MenuHamburguer({ visible, onClose }) {
             <Text style={[styles.menuText, { color: colors.text }]}>⚙️ {t('Configuracao')}</Text>
           </TouchableOpacity>
 
+          <TouchableOpacity onPress={() => navegar('SobreApp')} style={styles.menuItem}>
+            <Text style={[styles.menuText, { color: colors.text }]}>ℹ️ {t('SobreApp')}</Text>
+          </TouchableOpacity>
+
           <TouchableOpacity onPress={() => navegar('Logout')} style={styles.menuItem}>
             <Text style={[styles.menuText, { color: colors.text }]}>🔴 {t('Logout')}</Text>
           </TouchableOpacity>
