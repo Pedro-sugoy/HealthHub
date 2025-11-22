@@ -12,6 +12,23 @@ Este documento explica:
 
 ---
 
+## 👥 Nome e RM dos Integrantes
+
+- Pedro Manzo Yokoo – RM556115
+  
+- Guilherme Camasmie Laiber de Jesus – RM554894
+
+- Fernando Fernandes Prado – RM557982
+
+
+---
+
+## Link do vídeo no Youtube
+
+https://youtu.be/kqxDFDs9Z8A
+
+---
+
 ## 📌 **✨ Sobre o App**
 
 O HealthHub foi criado com o propósito de melhorar a experiência dos trabalhadores, oferecendo ferramentas que auxiliam:
